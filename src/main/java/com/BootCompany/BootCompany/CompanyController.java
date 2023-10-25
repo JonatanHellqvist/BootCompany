@@ -25,13 +25,18 @@ public class CompanyController {
 
     //*****LISTAN FÖR PRODUKTSIDAN*****
     private static final List<CompanyProducts> productItems = new ArrayList<>();
+
+    //mockdata som sker varje gång server laddar om
+    
     static {
         productItems.add(new CompanyProducts("Bil1",1000,1));
         productItems.add(new CompanyProducts("Bil2",1000,2));
         productItems.add(new CompanyProducts("Bil3",1000,3));
         productItems.add(new CompanyProducts("Bil4",1000,4));
     }
+    
     //*********GETMAPPING FÖR PRODUKTSIDAN********
+
     @GetMapping("/products")
     String getCompanyProducts(Model model) {
         model.addAttribute("productItems",productItems);
@@ -49,6 +54,17 @@ public class CompanyController {
         productItems.add(new CompanyProducts(name, 0, productItems.size() +1));
         return "redirect:/products";
     }
+    //*****GETMAPPING FÖR ATT TA BORT PRODUKT
+    // CALLBACK LAMDA FUNKTION "->"
+    //hoppar sedan tillbaka till listan
+
+    @GetMapping("/remove-product/{itemId}")
+    String removeProduct(@PathVariable int itemId) {
+        System.out.println("RemoveItem " + itemId);
+        //lambda funktion med getter från object i products
+        productItems.removeIf(item -> item.getId() == itemId);
+        return "redirect:/products";
+    }
 
     //*****ANSTÄLLDASIDAN*****
 
@@ -61,11 +77,21 @@ public class CompanyController {
         employeList.add(new CompanyEmployes("Kalle4", 69, 4));
     }
     //*****GETMAPPING FÖR ANSTÄLLDASIDAN*****
-     @GetMapping("/employes")
+    @GetMapping("/employes")
     String getCompanyEmployes(Model model) {
         model.addAttribute("employeList",employeList);
         return "employes";
     }
+    
+
+    //GetMapping för att byta till products sidan
+
+    /*@GetMapping("/productsPage")
+    public String products() {
+        return "products";
+    }*/
+
+
     
     
         

@@ -8,6 +8,15 @@
 <body>
     <h1>Ett Företag</h1>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias, at sint ad aspernatur eaque repellendus? Repellendus porro quibusdam in nihil ad eaque nostrum vitae, eos quae, veritatis, quod explicabo dolor?</p>
-    <button id ="homeBtn">Home</button><button id="employeBtn">Employes</button><button id="productBtn">Products</button>
+    
+    <a th:href="@{/companyInfo}">
+    <button id ="homeBtn" >Home</button>
+    </a>
+    <a th:href="@{/employes}">
+        <button id="employeBtn">Employes</button>
+    </a>
+    <a th:href="@{/products}">
+        <button>Products</button>
+    </a>
 </body>
 </html>

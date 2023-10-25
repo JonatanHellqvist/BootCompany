@@ -14,8 +14,17 @@
         </form>
     </div>
     <ul>
-        <li th:each="item : ${productItems}"><span th:text="${item.name}"></span></li>
+        <li th:id="${item.id}" th:each="item : ${productItems}">
+            <span th:text="${item.name}"></span> 
+            <a th:href="@{/remove-product/{itemId}(itemId=${item.id})}">[X]</a>
+        </li>
     </ul>
+    <a th:href="@{/companyInfo}">
+        <button id ="homeBtn" >Home</button>
+        </a>
+        <a th:href="@{/employes}">
+            <button id="employeBtn">Employes</button>
+        </a>
     
 </body>
 </html>
